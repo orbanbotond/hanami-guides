@@ -7,6 +7,9 @@ help:
 	@echo '  make new'
 	@echo '  make shutdown'
 
+launch:
+	docker-compose up
+
 dockerize:
 	docker-compose up --build
 
