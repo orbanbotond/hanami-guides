@@ -12,5 +12,8 @@ dockerize:
 shell:
 	docker-compose exec web sh
 
+new:
+	docker-compose run web hanami new .
+
 shutdown:
 	docker-compose down

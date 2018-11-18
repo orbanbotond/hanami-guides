@@ -1,5 +1,5 @@
 FROM ruby:2.5-alpine
-MAINTAINER Alexander Kadyrov <gruz0.mail@gmail.com>
+MAINTAINER Botond Orban <orbanbotond@gmail.com>
 
 RUN apk add --no-cache build-base postgresql postgresql-dev libpq
 
