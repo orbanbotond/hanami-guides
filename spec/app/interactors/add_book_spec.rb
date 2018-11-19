@@ -1,5 +1,8 @@
 RSpec.describe AddBook do
-  let(:interactor) { AddBook.new }
+  let(:mailer) { double("Mailers::BookAddedNotification", deliver: nil) }
+  let(:repository) { BookRepository.new }
+
+  let(:interactor) { AddBook.new(mailer: mailer, repository: repository) }
   let(:attributes) { Hash[author: "James Baldwin", title: "The Fire Next Time"] }
 
   context "good input" do
@@ -19,7 +22,7 @@ RSpec.describe AddBook do
 
       it "send :deliver to the mailer" do
         expect(mailer).to receive(:deliver)
-        AddBook.new(mailer: mailer).call(attributes)
+        interactor.call(attributes)
       end
     end
 
@@ -28,7 +31,7 @@ RSpec.describe AddBook do
 
       it "persists the Book" do
         expect(repository).to receive(:create)
-        AddBook.new(repository: repository).call(attributes)
+        interactor.call(attributes)
       end
     end
   end

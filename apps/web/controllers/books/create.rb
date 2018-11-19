@@ -13,7 +13,8 @@ module Web
           end
         end
 
-        def initialize(interactor: AddBook.new)
+        def initialize(interactor: AddBook.new(repository: BookRepository.new,
+                                               mailer: Mailers::BookAddedNotification.new))
           @interactor = interactor
         end
 
