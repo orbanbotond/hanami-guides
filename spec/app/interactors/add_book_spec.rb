@@ -14,6 +14,15 @@ RSpec.describe AddBook do
       expect(result.book.author).to eq("James Baldwin")
     end
 
+    context "sending email" do
+      let(:mailer) { instance_double("Mailers::BookAddedNotification") }
+
+      it "send :deliver to the mailer" do
+        expect(mailer).to receive(:deliver)
+        AddBook.new(mailer: mailer).call(attributes)
+      end
+    end
+
     context 'persistence' do
       let(:repository) { instance_double("BookRepository") }
 
