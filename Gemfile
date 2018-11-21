@@ -15,6 +15,8 @@ group :development do
 end
 
 group :test, :development do
+  gem 'hanami-fabrication'
+  gem 'ffaker'
   gem 'dotenv', '~> 2.4'
 end
 
