@@ -56,4 +56,16 @@ RSpec.describe StoryRepository, type: :repository do
       expect(stories.last.comments.size).to eq([comment_2_2, comment_2_2].count)
     end
   end
+
+  context '#group_by_id' do
+    let(:story_1) { Fabricate(:story) }
+    let(:story_2) { Fabricate(:story) }
+    let!(:comment_2_1) { Fabricate.create(:comment, story_id: story_2.id) }
+    let!(:comment_2_2) { Fabricate.create(:comment, story_id: story_2.id) }
+
+    specify 'the stories will contain the comments too' do
+      stories = repo.group_by_id
+      expect(stories.size).to eq(1)
+    end
+  end
 end
