@@ -34,6 +34,11 @@ Hanami.configure do
     delivery :test
   end
 
+  environment :test do
+    # See: http://hanamirb.org/guides/projects/logging
+    logger level: :debug, filter: %w[password password_confirmation]
+  end
+
   environment :development do
     # See: http://hanamirb.org/guides/projects/logging
     logger level: :debug, filter: %w[password password_confirmation]
