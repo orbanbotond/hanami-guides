@@ -18,6 +18,8 @@ group :test, :development do
   gem 'hanami-fabrication'
   gem 'ffaker'
   gem 'dotenv', '~> 2.4'
+  gem 'pry-nav'
+  gem 'pry'
 end
 
 group :test do
