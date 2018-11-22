@@ -23,7 +23,7 @@ class StoryRepository < Hanami::Repository
     .join(comments)
     .where(comments[:created_at].qualified => date_range)
     .group(:id)
-    .as(Story).to_a
+    .map_to(Story).to_a
   end
 
   def having_comments_at(date_range)
@@ -31,6 +31,6 @@ class StoryRepository < Hanami::Repository
       .join(comments)
       .where(comments[:created_at].qualified => date_range)
       .group(:id)
-      .as(Story).to_a
+      .map_to(Story).to_a
   end
 end
