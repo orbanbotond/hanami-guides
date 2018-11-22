@@ -2,8 +2,8 @@ class StoryRepository < Hanami::Repository
   associations do
     belongs_to :user, as: :author
     has_many :comments
-    # has_many :users, through: :comments, as: :commenters
-    has_many :users, through: :comments
+    has_many :users, through: :comments, as: :commenters
+    # has_many :users, through: :comments
   end
 
   def find_with_comments(id)
@@ -12,7 +12,11 @@ class StoryRepository < Hanami::Repository
   end
 
   def find_with_commenters(id)
-    aggregate(:users).where(id: id).map_to(Story).one
+    aggregate(:commenters).where(id: id).map_to(Story).one
+  end
+
+  def commenters_for(post)
+    assoc(:commenters, post).to_a
   end
 
   def with_comments

@@ -20,9 +20,20 @@ RSpec.describe StoryRepository, type: :repository do
     specify 'the comments will be populated' do
       story = repo.find_with_commenters(comment.story_id)
       expect(story.id).to_not be_nil
-      binding.pry
-      expect(story.users).to_not be_nil
-      # expect(story.commenters).to_not be_nil
+      # expect(story.users).to_not be_nil
+      expect(story.commenters).to_not be_nil
+    end
+  end
+
+  context '#commenters_for' do
+    let(:story) { Fabricate(:story) }
+    let!(:comment_1) { Fabricate.create(:comment, story_id: story.id) }
+    let!(:comment_2) { Fabricate.create(:comment, story_id: story.id) }
+
+    specify 'the commenters will be populated' do
+      commenters = repo.commenters_for(story)
+      expect([comment_1, comment_2].map(&:user_id)).to include(commenters.first.id)
+      expect([comment_1, comment_2].map(&:user_id)).to include(commenters.last.id)
     end
   end
 

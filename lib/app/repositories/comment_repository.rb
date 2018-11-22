@@ -4,4 +4,8 @@ class CommentRepository < Hanami::Repository
     belongs_to :user
     # belongs_to :user, as: :commenter
   end
+
+  def commenter_for(comment)
+    assoc(:user, comment).one
+  end
 end

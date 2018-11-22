@@ -6,6 +6,7 @@ help:
 	@echo '  make shell'
 	@echo '  make new'
 	@echo '  make shutdown'
+	@echo '  make launch'
 
 launch:
 	docker-compose up
