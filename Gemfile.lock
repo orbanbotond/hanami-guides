@@ -183,6 +183,7 @@ GEM
     slop (3.6.0)
     temple (0.8.0)
     tilt (2.0.8)
+    timerizer (0.3.0)
     transproc (1.0.2)
     url_mount (0.2.1)
       rack
@@ -208,6 +209,7 @@ DEPENDENCIES
   rspec
   shotgun
   slim
+  timerizer
 
 BUNDLED WITH
    1.17.1
