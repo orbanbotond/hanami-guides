@@ -34,16 +34,14 @@ module APIHelpers
     expect(response_status).to eq(404)
   end
 
-  def request_response
-    @response ||= subject
-  end
-
   def response_status
-    request_response[0]
+    subject
+    last_response.status
   end
 
   def request_body
-    request_response[2][0]
+    subject
+    last_response.body
   end
 
   def response_json
@@ -52,6 +50,10 @@ module APIHelpers
 
   def expect_json
     expect { response_json }.to_not raise_error
+  end
+
+  def expect_contains_field(field)
+    expect(response_json.keys).to include(field)
   end
 
   def self.included(base)

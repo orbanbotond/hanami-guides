@@ -1,9 +1,12 @@
 require 'hanami/helpers'
 require 'hanami/assets'
+require "hanami/middleware/body_parser"
 
 module Api
   class Application < Hanami::Application
     configure do
+      middleware.use Hanami::Middleware::BodyParser, :json
+
       ##
       # BASIC
       #
