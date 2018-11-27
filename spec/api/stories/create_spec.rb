@@ -13,11 +13,8 @@ describe "POST /api/stories" do
         let(:params) { super().reject{|k| k == field } }
 
         it "expects 400" do
-          r = post path
-          binding.pry
-          # expect(get('/')).to be_success
-          # expect_bad_request
-          # expect_json
+          expect_bad_request
+          expect_json
         end
       end
     end
@@ -28,7 +25,7 @@ describe "POST /api/stories" do
       it "expects 404" do
         expect_not_found
         expect_json
-      end        
+      end
     end
   end
 
