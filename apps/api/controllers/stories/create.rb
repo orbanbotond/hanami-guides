@@ -6,16 +6,21 @@ module Api
 
         accept :json
 
-        params do
-          def existing?(value)
-            return false unless UserRepository.find(value)
-
-            true
+        params Class.new(Hanami::Action::Params) {
+          predicate(:exists?, message: "User doesn't exists") do |current|
+            UserRepository.new.find(current)
           end
 
-          required(:text).filled(:str?)
-          required(:user_id).filled(:int?)
-        end
+          validations do
+            required(:text).filled(:str?)
+            required(:user_id) { int? & exists?}
+          end
+        }
+
+        # params do
+        #   required(:text).filled(:str?)
+        #   required(:user_id).filled(:int?)
+        # end
 
         def call(params)
           self.format =  :json
@@ -26,8 +31,13 @@ module Api
             self.status = 201
             self.body = JSON.generate(story.to_h)
           else
-            self.status = 400
-            self.body = {error: 'Wrong Input'}.to_json
+          if params.errors.include?(:user_id) && params.errors[:user_id] == ["User doesn't exists"]
+              self.status = 404
+              self.body = {error: 'The reference does not exists'}.to_json
+            else
+              self.status = 400
+              self.body = {error: 'Wrong Input'}.to_json
+            end
           end
         end
       end

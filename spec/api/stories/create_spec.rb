@@ -25,14 +25,14 @@ describe "POST /api/stories" do
       end
     end
 
-    # context 'nonexistent user reference' do
-    #   let(:params) { super().merge user_id: -1 }
+    context 'nonexistent user reference' do
+      let(:params) { super().merge user_id: -1 }
 
-    #   it "expects 404" do
-    #     expect_not_found
-    #     expect_json
-    #   end
-    # end
+      it "expects 404" do
+        expect_not_found
+        expect_json
+      end
+    end
   end
 
   context "positive cases" do

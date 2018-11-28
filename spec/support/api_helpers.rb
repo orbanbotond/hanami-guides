@@ -55,13 +55,4 @@ module APIHelpers
   def expect_contains_field(field)
     expect(response_json.keys).to include(field)
   end
-
-  def self.included(base)
-    base.class_eval do
-      after(:each) do
-        @response = nil
-        @json = nil
-      end
-    end
-  end
 end
