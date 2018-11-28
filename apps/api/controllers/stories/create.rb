@@ -6,21 +6,18 @@ module Api
 
         accept :json
 
+        REFFERENCE_ERROR_MESSAGE = "Reference doesn't exists"
+
         params Class.new(Hanami::Action::Params) {
-          predicate(:exists?, message: "User doesn't exists") do |current|
+          predicate(:reference_exists?, message: REFFERENCE_ERROR_MESSAGE) do |current|
             UserRepository.new.find(current)
           end
 
           validations do
             required(:text).filled(:str?)
-            required(:user_id) { int? & exists?}
+            required(:user_id) { int? & reference_exists?}
           end
         }
-
-        # params do
-        #   required(:text).filled(:str?)
-        #   required(:user_id).filled(:int?)
-        # end
 
         def call(params)
           self.format =  :json
@@ -31,12 +28,12 @@ module Api
             self.status = 201
             self.body = JSON.generate(story.to_h)
           else
-          if params.errors.include?(:user_id) && params.errors[:user_id] == ["User doesn't exists"]
-              self.status = 404
-              self.body = {error: 'The reference does not exists'}.to_json
-            else
+            if (pair = params.errors.select{|k,v| v.first =~ /#{REFFERENCE_ERROR_MESSAGE}/}).empty?
               self.status = 400
               self.body = {error: 'Wrong Input'}.to_json
+            else
+              self.status = 404
+              self.body = {error: pair.keys.first}.to_json
             end
           end
         end
