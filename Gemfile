@@ -14,6 +14,7 @@ gem 'pg'
 gem 'timerizer'
 gem 'trailblazer'
 gem 'reform'
+gem 'dry-monads'
 # gem 'trailblazer-endpoint'
 
 group :development do
