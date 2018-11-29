@@ -16,7 +16,7 @@ gem 'trailblazer'
 gem 'reform'
 gem 'dry-monads'
 gem 'dry-matcher'
-gem 'trailblazer-endpoint', path:'/Users/orbanbotond/profession/ruby/trailblazer-endpoint'
+gem 'trailblazer-endpoint', git: 'https://github.com/orbanbotond/trailblazer-endpoint'
 
 group :development do
   # Code reloading
