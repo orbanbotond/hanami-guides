@@ -9,13 +9,14 @@ module Api
         REFFERENCE_ERROR_MESSAGE = "Reference doesn't exists"
 
         params Class.new(Hanami::Action::Params) {
+          #TODO this can be replaced by not_found if a trailblazer operation is used with an endpoint.
           predicate(:reference_exists?, message: REFFERENCE_ERROR_MESSAGE) do |current|
             UserRepository.new.find(current)
           end
 
           validations do
             required(:text).filled(:str?)
-            required(:user_id) { int? & reference_exists?}
+            required(:user_id) { int? & reference_exists? }
           end
         }
 
