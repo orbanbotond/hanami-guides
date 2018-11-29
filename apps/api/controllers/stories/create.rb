@@ -6,8 +6,6 @@ module Api
 
         accept :json
 
-        REFFERENCE_ERROR_MESSAGE = "Reference doesn't exists"
-
         def call(params)
           self.format =  :json
 
