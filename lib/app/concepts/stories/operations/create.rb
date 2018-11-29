@@ -14,7 +14,7 @@ module Stories
       step :persist
 
       def persist(options, params:, **)
-        options['model'] = StoryRepository.new.create(params)
+        options['result.model'] = StoryRepository.new.create(params)
       end
     end
   end

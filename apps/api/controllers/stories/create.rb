@@ -8,33 +8,33 @@ module Api
 
         REFFERENCE_ERROR_MESSAGE = "Reference doesn't exists"
 
-        params Class.new(Hanami::Action::Params) {
-          #TODO this can be replaced by not_found if a trailblazer operation is used with an endpoint.
-          predicate(:reference_exists?, message: REFFERENCE_ERROR_MESSAGE) do |current|
-            UserRepository.new.find(current)
-          end
-
-          validations do
-            required(:text).filled(:str?)
-            required(:user_id) { int? & reference_exists? }
-          end
-        }
-
         def call(params)
           self.format =  :json
 
-          if params.valid?
-            story = StoryRepository.new.create params
+          result = ::Stories::Operations::Create.(params.to_h, {})
+          action = self
 
-            self.status = 201
-            self.body = JSON.generate(story.to_h)
-          else
-            if (pair = params.errors.select{|k,v| v.first =~ /#{REFFERENCE_ERROR_MESSAGE}/}).empty?
+          additional_outcomes = {
+            reference_not_found: Dry::Matcher::Case.new(
+              match:   ->(result) { result.failure? && result["result.fk_reference.default"] && result["result.fk_reference.default"].failure? },
+              resolve: ->(result) { result })
+          }
+
+          Trailblazer::Endpoint.new.(result, 
+                                      outcomes: [:success, :invalid],
+                                      additional_outcomes: additional_outcomes
+                                      ) do |outcome|
+            outcome.reference_not_found do |result|
+              self.status = 404
+              self.body = JSON.generate("Reference to the key: #{result['result.fk_reference.key']} not found!")
+            end
+            outcome.success do |result|
+              self.status = 201
+              self.body = JSON.generate(result["result.model"].to_h)
+            end
+            outcome.invalid do |result|
               self.status = 400
               self.body = {error: 'Wrong Input'}.to_json
-            else
-              self.status = 404
-              self.body = {error: pair.keys.first}.to_json
             end
           end
         end

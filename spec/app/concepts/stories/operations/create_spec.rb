@@ -33,8 +33,8 @@ describe Stories::Operations::Create do
   context "positive case" do
     it "saves the entity properly details" do
       expect do
-        expect(result["model"].text).to eq(params[:text])
-        expect(result["model"].user_id).to eq(params[:user_id])
+        expect(result["result.model"].text).to eq(params[:text])
+        expect(result["result.model"].user_id).to eq(params[:user_id])
       end.to change { repo.all.count }.by(1)
     end
   end
