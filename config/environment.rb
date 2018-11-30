@@ -44,6 +44,10 @@ Hanami.configure do
   environment :development do
     # See: http://hanamirb.org/guides/projects/logging
     logger level: :debug, filter: %w[password password_confirmation]
+
+    mailer do
+      delivery :smtp, address: "127.0.0.1", port: 1025
+    end
   end
 
   environment :production do
