@@ -1,5 +1,6 @@
-PATH
-  remote: /Users/orbanbotond/profession/ruby/trailblazer-endpoint
+GIT
+  remote: https://github.com/orbanbotond/trailblazer-endpoint
+  revision: 0196b8c43493759cb65c7e505eddd622b0484737
   specs:
     trailblazer-endpoint (0.0.1)
       dry-matcher
