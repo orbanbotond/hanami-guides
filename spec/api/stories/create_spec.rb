@@ -9,9 +9,12 @@ describe "POST /api/stories" do
 
   let(:path) { "/api/stories" }
   let(:params) { {text: 'Lorem', user_id: user.id} }
-  let(:headers) { {Accept: 'application/json', 'Content-Type': 'application/json'} }
+  let(:headers) { {"Api-Key" => 'A dummy API key'} }
 
-  subject { post path,  params, {} }
+  subject do
+    headers.each_pair {|k,v| header k, v }
+    post path,  params, headers
+  end
 
   context 'negative cases' do
     context 'missing fields' do

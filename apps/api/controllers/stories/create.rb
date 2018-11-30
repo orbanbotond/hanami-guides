@@ -6,8 +6,11 @@ module Api
 
         accept :json
 
+        API_KEY = "Api-Key"
+
         def call(params)
           self.format =  :json
+          puts "API key: #{params.env[API_KEY]}"
 
           result = ::Stories::Operations::Create.(params.to_h, {})
           action = self
