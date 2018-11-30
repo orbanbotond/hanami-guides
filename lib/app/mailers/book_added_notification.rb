@@ -16,6 +16,7 @@ module Mailers
 
     def prepare
       mail.attachments['invoice.pdf'] = File.read File.join(Hanami.root, "public", "optigrill.pdf")
+
     end
 
     private

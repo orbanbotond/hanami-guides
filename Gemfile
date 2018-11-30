@@ -16,6 +16,7 @@ gem 'trailblazer'
 gem 'reform'
 gem 'dry-monads'
 gem 'dry-matcher'
+gem 'roadie', '~> 3.4'
 gem 'trailblazer-endpoint', git: 'https://github.com/orbanbotond/trailblazer-endpoint'
 
 group :development do
