@@ -30,7 +30,7 @@ Hanami.configure do
   end
 
   mailer do
-    root 'lib/app/mailers'
+    root 'lib/app/mailers/templates'
 
     # See http://hanamirb.org/guides/mailers/delivery
     delivery :test

@@ -7,7 +7,11 @@ end
 
 gem 'rake'
 gem 'slim'
-gem 'hanami',       '~> 1.3'
+gem 'hanami', git: 'https://github.com/orbanbotond/hanami', branch: 'features/mailer-layouts'
+# gem 'hanami', path: '/Users/orbanbotond/profession/ruby/hanami/hanami'
+# gem 'hanami-mailer', require: false, path: "/Users/orbanbotond/profession/ruby/hanami/mailer"
+gem 'hanami-mailer', require: false, git: "https://github.com/orbanbotond/trailblazer/mailer", branch: 'feature/add-mailer-layout'
+
 gem 'hanami-model', '~> 1.3'
 
 gem 'pg'
