@@ -8,8 +8,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.2)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -26,7 +26,7 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.2)
     concurrent-ruby (1.1.3)
-    css_parser (1.6.0)
+    css_parser (1.7.0)
       addressable
     database_cleaner (1.7.0)
     debug_inspector (0.0.3)
@@ -147,9 +147,9 @@ GEM
       mini_mime (>= 0.1.1)
     method_source (0.8.2)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     pg (1.1.3)
     pipetree (0.1.1)
     pry (0.10.4)
@@ -158,7 +158,7 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
-    public_suffix (3.0.3)
+    public_suffix (4.0.1)
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -171,9 +171,9 @@ GEM
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
-    roadie (3.4.0)
+    roadie (4.0.0)
       css_parser (~> 1.4)
-      nokogiri (~> 1.5)
+      nokogiri (~> 1.8)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.3)
@@ -253,7 +253,7 @@ DEPENDENCIES
   pry-nav
   rake
   reform
-  roadie (~> 3.4)
+  roadie (~> 4.0)
   rspec
   shotgun
   slim
