@@ -150,7 +150,7 @@ GEM
     mini_portile2 (2.3.0)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
-    pg (1.1.3)
+    pg (1.2.3)
     pipetree (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
